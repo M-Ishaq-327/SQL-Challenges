@@ -44,6 +44,15 @@ SELECT order_date, DATENAME(WEEKDAY,order_date) as DayName
 FROM sales.orders
 WHERE DATENAME(WEEKDAY,order_date) NOT IN ('Saturday','Sunday');
 
---Find users who logged in more than once on the same day.
+--Find records created between two dates (inclusive). maybe '2016-1-1' to '2026-1-22'
+SELECT order_id , order_date
+FROM sales.orders
+WHERE order_date BETWEEN ('2016-01-01') AND ('2016-01-22') ;
 
-SELECT  * FROM ;
+--recomended way is below:
+SELECT order_id,order_date
+FROM sales.orders
+WHERE order_date >= '2016-01-01' AND order_date <= '2016-01-22';
+
+--Find records created in the last 24 hours.
+SELECT * FROM sales.orders WHERE order_date = CAST(GETDATE() AS date);
